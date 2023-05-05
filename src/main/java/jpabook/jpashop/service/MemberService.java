@@ -27,7 +27,7 @@ public class MemberService {
 
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByName(member.getName());
-        if (!findMembers.isEmpty()) {
+        if (!findMembers.isEmpty()) { // 실무에서는 멀티쓰레드 환경을 고려해서 데이터베이스 name 칼럼에 unique 제약조건을 추가하는게 좋다.
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
